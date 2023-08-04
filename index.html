@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentimental Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  </head>
+<body>
+    <form action="/sendurl" method="POST">
+        <input type="text" name="url" id="url">
+        <button>Submit</button>
+    </form>
+
+    <div id="myPlot">{{chart}}</div>
+
+  <script>
+    var str=document.getElementById("myPlot").innerHTML;
+    document.getElementById("myPlot").innerHTML="";
+    var data=JSON.parse(str);
+    var xArray = data[0];
+    var yArray = data[1];
+    var layout = {title:"Sentimental Analysis"};
+    var data = [{labels:xArray, values:yArray, type:"pie"}];
+    Plotly.newPlot("myPlot", data, layout);
+  </script>
+
+</body>
+</html>
